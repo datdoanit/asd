@@ -2,8 +2,8 @@ package com.mum.asd.labs.observer_pattern;
 
 public class StockMarket extends AbstractMarket {
 
-    private StockBuyer buyer = new StockBuyer();
-    private StockViewer viewer = new StockViewer();
+    private IObserver buyer = new StockBuyer();
+    private IObserver viewer = new StockViewer();
 
     public StockMarket() {
         addObserver(buyer);
