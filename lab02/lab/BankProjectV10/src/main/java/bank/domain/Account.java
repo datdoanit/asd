@@ -1,9 +1,14 @@
 package bank.domain;
 
+import bank.observers.EmailSender;
+import bank.observers.Logger;
+import bank.observers.SMSSender;
+import bank.subjects.SubjectAbstract;
+
 import java.util.*;
 
 
-public class Account {
+public class Account extends SubjectAbstract {
 	long accountnumber;
 	Collection<AccountEntry> entryList = new ArrayList<AccountEntry>();
 	Customer customer;
@@ -11,6 +16,10 @@ public class Account {
 	
 	public Account (long accountnr){
 		this.accountnumber = accountnr;
+		addObserver(new EmailSender());
+		addObserver(new Logger());
+		addObserver(new SMSSender());
+		doNotify(this);
 	}
 	public long getAccountnumber() {
 		return accountnumber;
@@ -28,10 +37,12 @@ public class Account {
 	public void deposit(double amount){
 		AccountEntry entry = new AccountEntry(new Date(), amount, "deposit", "", "");
 		entryList.add(entry);
+		doNotify(this);
 	}
 	public void withdraw(double amount){
 		AccountEntry entry = new AccountEntry(new Date(), -amount, "withdraw", "", "");
-		entryList.add(entry);	
+		entryList.add(entry);
+		doNotify(this);
 	}
 
 	private void addEntry(AccountEntry entry){
@@ -44,6 +55,8 @@ public class Account {
 		entryList.add(fromEntry);	
 		toAccount.addEntry(toEntry);
 		toAccount.deposit(amount);
+		doNotify(this);
+		doNotify(toAccount);
 	}
 	
 	public Customer getCustomer() {
