@@ -1,4 +1,4 @@
-package com.mum.asd.labs.observer_pattern;
+package com.mum.asd.labs.lab02.homework;
 
 import java.util.ArrayList;
 import java.util.HashMap;

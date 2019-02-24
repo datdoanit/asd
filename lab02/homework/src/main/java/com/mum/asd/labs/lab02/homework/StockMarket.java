@@ -1,4 +1,4 @@
-package com.mum.asd.labs.observer_pattern;
+package com.mum.asd.labs.lab02.homework;
 
 public class StockMarket extends AbstractMarket {
 
