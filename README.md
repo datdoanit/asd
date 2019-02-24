@@ -17,3 +17,6 @@ Go to the directory where your files are located.
 $ cd directory
 $ git add *
 $ git commit -m "Adding new files"
+
+3. UML
+https://courses.cs.washington.edu/courses/cse403/11sp/lectures/lecture08-uml1.pdf
