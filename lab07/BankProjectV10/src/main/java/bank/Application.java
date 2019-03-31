@@ -1,10 +1,12 @@
 package bank;
 
+import java.lang.reflect.Proxy;
 import java.util.Collection;
 
 import bank.domain.Account;
 import bank.domain.AccountEntry;
 import bank.domain.Customer;
+import bank.proxy.Timing;
 import bank.service.AccountService;
 import bank.service.IAccountService;
 
@@ -12,7 +14,13 @@ import bank.service.IAccountService;
 
 public class Application {
 	public static void main(String[] args) {
-		IAccountService accountService = new AccountService();
+		IAccountService original = new AccountService();
+
+		IAccountService accountService = (IAccountService) Proxy.newProxyInstance(
+				IAccountService.class.getClassLoader(),
+				new Class[] { IAccountService.class },
+				new Timing(original));
+
 		// create 2 accounts;
 		accountService.createAccount(1263862, "Frank Brown");
 		accountService.createAccount(4253892, "John Doe");
