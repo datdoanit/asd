@@ -1,14 +1,13 @@
 package bank;
 
-import java.util.Collection;
-
 import bank.domain.Account;
 import bank.domain.AccountEntry;
 import bank.domain.Customer;
-import bank.service.AccountService;
 import bank.service.IAccountService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Collection;
 
 
 public class Application {

@@ -13,7 +13,7 @@
 
 
     <bean id="accountService" class="bank.service.AccountService">
-        <property name="testAccountDAO" ref="accountDAO"></property>
+        <constructor-arg ref="testAccountDAO"></constructor-arg>
     </bean>
 
     <bean id="accountDAO" class="bank.dao.AccountDAO"></bean>
